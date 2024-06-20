@@ -31,7 +31,7 @@
             </div>
             <div class=" w-full py-1 flex text-sm justify-center roboto-regular">
                 <span class="px-2 mb-3 mr-1 border-r-2"><%= personal.phone %></span>
-                <span class="px-2 mb-3 mr-1 border-r-2"><%= personal.email %></span>personal.
+                <span class="px-2 mb-3 mr-1 border-r-2"><%= personal.email %></span>
                 <span class="px-2 mb-3 mr-1 border-r-2"><%= personal.location %></span>
 
                 <% if(!personal.github== ""){ %>
@@ -125,6 +125,27 @@
             <% }); %>
         </section>
         <% } %>
+
+        <!-- certification  -->
+        <% if(!certification[0].title == ""){ %>
+            <section class="certification py-2">
+                <h2 class="text-base font-medium border-b-2 mb-2">CERTIFICATION</h2>
+                <% certification.forEach(function(certification) { %>
+                    <div class="flex items-center w-full justify-between pb-1">
+                        <div>
+                            <h3 class="text-base
+                            font-semibold"><%= certification.title %></h3>
+                        </div>
+                        <div>
+                            <a href="<%= certification.link %>">Certificate Link</a>
+                          
+                        </div>
+                    </div>
+                   
+                <% }); %>
+            </section>
+            <% } %>
+       
 
         <!-- Skills  -->
         <section class="skills mt-2">
