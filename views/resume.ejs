@@ -1,170 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= personal.name %> - Resume</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
     <style>
-
-.playfair-display {
-  font-family: "Playfair Display", serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-.roboto-regular {
-  font-family: "Roboto", sans-serif;
-}
+      .playfair-display {
+        font-family: "Playfair Display", serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+      }
+      .roboto-regular {
+        font-family: "Roboto", sans-serif;
+      }
     </style>
-</head>
-<body class="px-5 py-2 text-sm ">
+  </head>
+  <body class="px-5 py-2 text-sm">
     <div class="resume-container playfair-display">
+      <!-- Header  -->
+      <header class="">
+        <div class="w-full flex flex-col items-center">
+          <h1 class="text-[18px] font-semibold"><%= personal.name %></h1>
+          <p class="text-base font-semibold py-1"><%= personal.title %></p>
+        </div>
+        <div class="w-full py-1 flex text-sm justify-center roboto-regular">
+          <span class="px-2 mb-3 mr-1 border-r-2"><%= personal.phone %></span>
+          <span class="px-2 mb-3 mr-1 border-r-2"><%= personal.email %></span>
+          <span class="px-2 mb-3 mr-1 border-r-2"
+            ><%= personal.location %></span
+          >
+          <div>
+            <% if(!personal.github== ""){ %>
+            <span class="px-2 mb-3 mr-1 border-r-2"
+              ><a href="<%= personal.github %>">GitHub</a></span
+            >
+            <% } if(!personal.linkedin== ""){%>
+            <span class="px-2 mb-3 mr-1 border-r-2"
+              ><a href="<%= personal.linkedin %>">LinkedIn</a></span
+            >
+            <% } if(!personal.leetcode== ""){%>
+            <span class="px-2 mb-3 mr-1 cursor-pointer"
+              ><a href="<%= personal.leetcode %>">Leetcode</a></span
+            >
+            <% }%>
+          </div>
+        </div>
+      </header>
 
-        <!-- Header  -->
-        <header class="">
-            <div class="w-full flex flex-col items-center ">
-                <h1 class="text-[18px] font-semibold "><%= personal.name %></h1>
-                <p class="text-base font-semibold py-1"><%= personal.title %></p>
-            </div>
-            <div class=" w-full py-1 flex text-sm justify-center roboto-regular">
-                <span class="px-2 mb-3 mr-1 border-r-2"><%= personal.phone %></span>
-                <span class="px-2 mb-3 mr-1 border-r-2"><%= personal.email %></span>
-                <span class="px-2 mb-3 mr-1 border-r-2"><%= personal.location %></span>
+      <!-- Summary  -->
+      <section class="summary pb-1">
+        <h3 class="text-base font-medium border-b-2">SUMMARY</h3>
+        <p class="pl-3 py-2"><%= personal.summary %></p>
+      </section>
 
-                <% if(!personal.github== ""){ %>
-                <span class="px-2 mb-3 mr-1 border-r-2"><a href="<%= personal.github %>">GitHub</a></span>
-                <% } if(!personal.linkedin== ""){%>
-                <span class="px-2 mb-3 mr-1 border-r-2"><a href="<%= personal.linkedin %>">LinkedIn</a></span>
-                <% } if(!personal.leetcode== ""){%>
-                <span class="px-2 mb-3 mr-1 cursor-pointer"><a href="<%= personal.leetcode %>">Leetcode</a></span>
-                <% }%>
-            </div>
-        </header>
-
-        <!-- Summary  -->
-        <section class="summary pb-1">
-            <h3 class="text-base font-medium border-b-2">SUMMARY</h3>
-            <p class="pl-3 py-2"><%= personal.summary %></p>
-        </section>
-
-        <!-- Experience  -->
-        <% if(!experience[0].company== ""){ %>
-        <section class="experience py-2">
-            <h2 class="text-base font-medium border-b-2 mb-2">EXPERIENCE</h2>
-            <% experience.forEach(function(exp) { %>
-                <div class="flex items-center w-full justify-between pb-1">
-                    <div>
-                        <h3 class="text-base
-                         font-semibold"><%= exp.company %></h3>
-                        <p><%= exp.position %></p>
-                    </div>
-                    <div>
-                        <p><%= exp.duration %></p>
-                        <% if (exp.badgeLink) { %>
-                            <a href="<%= exp.badgeLink %>">Certificate Link</a>
-                        <% } %>
-                    </div>
-                </div>
-                <p class="pl-2 mb-2"><%= exp.description %></p>
-            <% }); %>
-        </section>
-        <% } %>
-
-        <!-- Education  -->
-        <section class="education py-2">
-            <h2 class="text-base font-medium border-b-2 mb-2">EDUCATION</h2>
-            <% education.forEach(function(education) { %>
-                <div class="flex items-center w-full justify-between pb-1">  
-                    <div>
-                        <h3 class="text-base font-semibold"><%= education.degree %></h3>
-                        <p><%= education.institution %></p>
-                    </div>
-                    <div>
-                        <p><%= education.duration %></p>
-                        <p><%= education.cgpa %></p>
-                        
-                    </div>
-                </div>
-            <% }); %>
-        </section>
-
-        <!-- Internship  -->
-        <% if(!internships[0].name== ""){ %>
-        <section class="internships py-2">
-            <h2 class="text-base font-medium border-b-2 mb-2">INTERNSHIP</h2>
-            <% internships.forEach(function(internship) { %>
-                <div class="flex items-center w-full justify-between pb-1">
-                    <div>
-                        <h3 class="text-base font-semibold"><%= internship.name %></h3>
-                        <p><%= internship.position %></p>
-                    </div>
-                    <div>
-                        <p><%= internship.duration %></p>
-                    </div>
-                </div>
-                <p class="pl-2 mb-2"><%= internship.description %></p>
-            <% }); %>
-        </section>
-        <% } %>
-
-        <!-- Projects  -->
-        <% if(!projects[0].name== ""){ %>
-        <section class="projects">
-            <h2 class="text-base font-medium border-b-2 mb-2">PROJECTS</h2>
-            <% projects.forEach(function(project) { %>
-                <div class="mb-3">
-                    <% if (project.name) { %>
-                        <h3 class="text-base font-semibold"><%= project.name %></h3>
-                    <% } %>
-                    <p><%= project.technology %></p>
-                    <p class="pl-2"><%= project.description %></p>
-                </div>
-            <% }); %>
-        </section>
-        <% } %>
-
-        <!-- certification  -->
-        <% if(!certification[0].title == ""){ %>
-            <section class="certification py-2">
-                <h2 class="text-base font-medium border-b-2 mb-2">CERTIFICATION</h2>
-                <% certification.forEach(function(certification) { %>
-                    <div class="flex items-center w-full justify-between pb-1">
-                        <div>
-                            <h3 class="text-base
-                            font-semibold"><%= certification.title %></h3>
-                        </div>
-                        <div>
-                            <a href="<%= certification.link %>">Certificate Link</a>
-                          
-                        </div>
-                    </div>
-                   
-                <% }); %>
-            </section>
+      <!-- Experience  -->
+      <% if(!experience[0].company== ""){ %>
+      <section class="experience py-2">
+        <h2 class="text-base font-medium border-b-2 mb-2">EXPERIENCE</h2>
+        <% experience.forEach(function(exp) { %>
+        <div class="flex items-center w-full justify-between pb-1">
+          <div>
+            <h3 class="text-base font-semibold"><%= exp.company %></h3>
+            <p><%= exp.position %></p>
+          </div>
+          <div>
+            <p><%= exp.duration %></p>
+            <% if (exp.badgeLink) { %>
+            <a href="<%= exp.badgeLink %>">Certificate Link</a>
             <% } %>
-       
+          </div>
+        </div>
+        <p class="pl-2 mb-2"><%= exp.description %></p>
+        <% }); %>
+      </section>
+      <% } %>
 
-        <!-- Skills  -->
-        <section class="skills mt-2">
-            <h3 class="text-base font-medium border-b-2 mb-2">OTHER</h3>
-            <div class="skills-container flex flex-col justify-evenly">
-                <div>
-                    <li class="text-sm font-medium">Soft Skills: 
-                        <span class="font-normal"><%= skills.soft.join(", ") %></span>
-                    </li>
-                    <li class="text-sm font-medium">Hard Skills: 
-                        <span class="font-normal"><%= skills.hard.join(", ") %></span>
-                    </li>
-                    <li class="text-sm font-medium">Technical Skills: 
-                        <span class="font-normal"><%= skills.technology.join(", ") %></span>
-                    </li>
-                    
-                </div>
-            </div>
-        </section>
+      <!-- Education  -->
+      <section class="education py-2">
+        <h2 class="text-base font-medium border-b-2 mb-2">EDUCATION</h2>
+        <% education.forEach(function(education) { %>
+        <div class="flex items-center w-full justify-between pb-1">
+          <div>
+            <h3 class="text-base font-semibold"><%= education.degree %></h3>
+            <p><%= education.institution %></p>
+          </div>
+          <div>
+            <p><%= education.duration %></p>
+            <p><%= education.cgpa %></p>
+          </div>
+        </div>
+        <% }); %>
+      </section>
+
+      <!-- Internship  -->
+      <% if(!internships[0].name== ""){ %>
+      <section class="internships py-2">
+        <h2 class="text-base font-medium border-b-2 mb-2">INTERNSHIP</h2>
+        <% internships.forEach(function(internship) { %>
+        <div class="flex items-center w-full justify-between pb-1">
+          <div>
+            <h3 class="text-base font-semibold"><%= internship.name %></h3>
+            <p><%= internship.position %></p>
+          </div>
+          <div>
+            <p><%= internship.duration %></p>
+          </div>
+        </div>
+        <p class="pl-2 mb-2"><%= internship.description %></p>
+        <% }); %>
+      </section>
+      <% } %>
+
+      <!-- Projects  -->
+      <% if(!projects[0].name== ""){ %>
+      <section class="projects">
+        <h2 class="text-base font-medium border-b-2 mb-2">PROJECTS</h2>
+        <% projects.forEach(function(project) { %>
+        <div class="mb-3">
+          <% if (project.name) { %>
+          <h3 class="text-base font-semibold"><%= project.name %></h3>
+          <% } %>
+          <p><%= project.technology %></p>
+          <p class="pl-2"><%= project.description %></p>
+        </div>
+        <% }); %>
+      </section>
+      <% } %>
+
+      <!-- certification  -->
+      <% if(!certification[0].title == ""){ %>
+      <section class="certification py-2">
+        <h2 class="text-base font-medium border-b-2 mb-2">CERTIFICATION</h2>
+        <% certification.forEach(function(certification) { %>
+        <div class="flex items-center w-full justify-between pb-1">
+          <div>
+            <h3 class="text-base font-semibold"><%= certification.title %></h3>
+          </div>
+          <div>
+            <a href="<%= certification.link %>">Certificate Link</a>
+          </div>
+        </div>
+
+        <% }); %>
+      </section>
+      <% } %>
+
+      <!-- Skills  -->
+      <section class="skills mt-2">
+        <h3 class="text-base font-medium border-b-2 mb-2">OTHER</h3>
+        <div class="skills-container flex flex-col justify-evenly">
+          <div>
+            <li class="text-sm font-medium">
+              Soft Skills:
+              <span class="font-normal"><%= skills.soft.join(", ") %></span>
+            </li>
+            <li class="text-sm font-medium">
+              Hard Skills:
+              <span class="font-normal"><%= skills.hard.join(", ") %></span>
+            </li>
+            <li class="text-sm font-medium">
+              Technical Skills:
+              <span class="font-normal"
+                ><%= skills.technology.join(", ") %></span
+              >
+            </li>
+          </div>
+        </div>
+      </section>
     </div>
-</body>
+  </body>
 </html>
