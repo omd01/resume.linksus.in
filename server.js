@@ -15,8 +15,11 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(bodyParser.urlencoded({ extended: true }));
 const templatePath = path.join(__dirname, "views/resume.ejs");
+app.use(express.static(path.join(__dirname, 'build')));
 
-
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.post("/api/form", async (req, res) => {
   try {
