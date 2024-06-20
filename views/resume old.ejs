@@ -5,40 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= personal.name %> - Resume</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      .merriweather-black {
-  font-family: "Merriweather", serif;
-  font-weight: 900;
-  font-style: normal;
-}
-.noto-sans {
-  font-family: "Noto Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-}
-
+      .playfair-display {
+        font-family: "Playfair Display", serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+      }
+      .roboto-regular {
+        font-family: "Roboto", sans-serif;
+      }
     </style>
   </head>
   <body class="px-5 py-2 text-sm">
-    <div class="resume-container noto-sans">
+    <div class="resume-container playfair-display">
       <!-- Header  -->
       <header class="">
-        <div class="w-full flex flex-col items-center merriweather-black">
-          <h1 class="text-[20px] font-semibold"><%= personal.name %></h1>
-          <p class="text-[17px] font-semibold py-1"><%= personal.title %></p>
+        <div class="w-full flex flex-col items-center">
+          <h1 class="text-[18px] font-semibold"><%= personal.name %></h1>
+          <p class="text-base font-semibold py-1"><%= personal.title %></p>
         </div>
         <div class="w-full py-1 flex text-sm justify-center roboto-regular">
           <span class="px-2 mb-3 mr-1 border-r-2"><%= personal.phone %></span>
           <span class="px-2 mb-3 mr-1 border-r-2"><%= personal.email %></span>
-          <span class="px-2 mb-3 mr-1 border-r-2"
+          <span class="px-2 mb-3 mr-1 "
             ><%= personal.location %></span
           >
           <div>
             <% if(!personal.github== ""){ %>
-            <span class="px-2 mb-3 mr-1 border-r-2 cursor-pointer"
+            <span class="px-2 mb-3 mr-1 border-l-2 border-r-2 cursor-pointer"
               ><a href="<%= personal.github %>">GitHub</a></span
             >
             <% } if(!personal.linkedin== ""){%>
@@ -56,19 +59,19 @@
 
       <!-- Summary  -->
       <section class="summary pb-1">
-        <h3 class="text-base font-semibold border-b-2">SUMMARY</h3>
-        <p class="py-2"><%= personal.summary %></p>
+        <h3 class="text-base font-medium border-b-2">SUMMARY</h3>
+        <p class="pl-3 py-2"><%= personal.summary %></p>
       </section>
 
       <!-- Experience  -->
       <% if(!experience[0].company== ""){ %>
       <section class="experience py-2">
-        <h2 class="text-base font-semibold border-b-2 mb-2">EXPERIENCE</h2>
+        <h2 class="text-base font-medium border-b-2 mb-2">EXPERIENCE</h2>
         <% experience.forEach(function(exp) { %>
         <div class="flex items-center w-full justify-between pb-1">
           <div>
             <h3 class="text-base font-semibold"><%= exp.company %></h3>
-            <p class="italic"><%= exp.position %></p>
+            <p><%= exp.position %></p>
           </div>
           <div>
             <p><%= exp.duration %></p>
@@ -77,23 +80,23 @@
             <% } %>
           </div>
         </div>
-        <p class=" mb-2"><%= exp.description %></p>
+        <p class="pl-2 mb-2"><%= exp.description %></p>
         <% }); %>
       </section>
       <% } %>
 
       <!-- Education  -->
       <section class="education py-2">
-        <h2 class="text-base font-semibold border-b-2 mb-2">EDUCATION</h2>
+        <h2 class="text-base font-medium border-b-2 mb-2">EDUCATION</h2>
         <% education.forEach(function(education) { %>
         <div class="flex items-center w-full justify-between pb-1">
           <div>
-            <h3 class="text-base font-semibold"><%= education.degree %>,(<%= education.cgpa %>)</h3>
-            <p class="italic" ><%= education.institution %></p>
+            <h3 class="text-base font-semibold"><%= education.degree %></h3>
+            <p><%= education.institution %></p>
           </div>
           <div>
             <p><%= education.duration %></p>
-            <p></p>
+            <p><%= education.cgpa %></p>
           </div>
         </div>
         <% }); %>
@@ -102,18 +105,18 @@
       <!-- Internship  -->
       <% if(!internships[0].name== ""){ %>
       <section class="internships py-2">
-        <h2 class="text-base font-semibold border-b-2 mb-2">INTERNSHIP</h2>
+        <h2 class="text-base font-medium border-b-2 mb-2">INTERNSHIP</h2>
         <% internships.forEach(function(internship) { %>
         <div class="flex items-center w-full justify-between pb-1">
           <div>
             <h3 class="text-base font-semibold"><%= internship.name %></h3>
-            <p class="italic"><%= internship.position %></p>
+            <p><%= internship.position %></p>
           </div>
           <div>
             <p><%= internship.duration %></p>
           </div>
         </div>
-        <p class="mb-2"><%= internship.description %></p>
+        <p class="pl-2 mb-2"><%= internship.description %></p>
         <% }); %>
       </section>
       <% } %>
@@ -121,14 +124,14 @@
       <!-- Projects  -->
       <% if(!projects[0].name== ""){ %>
       <section class="projects">
-        <h2 class="text-base font-semibold border-b-2 mb-2">PROJECTS</h2>
+        <h2 class="text-base font-medium border-b-2 mb-2">PROJECTS</h2>
         <% projects.forEach(function(project) { %>
         <div class="mb-3">
           <% if (project.name) { %>
           <h3 class="text-base font-semibold"><%= project.name %></h3>
           <% } %>
-          <p class="italic"><%= project.technology %></p>
-          <p class=""><%= project.description %></p>
+          <p><%= project.technology %></p>
+          <p class="pl-2"><%= project.description %></p>
         </div>
         <% }); %>
       </section>
@@ -137,7 +140,7 @@
       <!-- certification  -->
       <% if(!certification[0].title == ""){ %>
       <section class="certification py-2">
-        <h2 class="text-base font-semibold border-b-2 mb-2">CERTIFICATION</h2>
+        <h2 class="text-base font-medium border-b-2 mb-2">CERTIFICATION</h2>
         <% certification.forEach(function(certification) { %>
         <div class="flex items-center w-full justify-between pb-1">
           <div>
@@ -154,24 +157,38 @@
 
       <!-- Skills  -->
       <section class="skills mt-2">
-        <h3 class="text-base font-semibold border-b-2 mb-2">OTHER</h3>
+        <h3 class="text-base font-medium border-b-2 mb-2">OTHER</h3>
         <div class="skills-container flex flex-col justify-evenly w-full">
 
           <div class="flex my-1 ">
-            <h3 class="text-sm font-semibold">Soft Skills:</h3>
-           <span class="font-normal px-1"><%= skills.soft.join(", ") %></span>
+            <div class="w-1/6">
+              <li class="text-sm font-medium">Soft Skills:</li>
+            </div>
+            <div class="">
+            <span class="font-normal px-1"><%= skills.soft.join(", ") %></span>
+
+          </div>
           </div>
 
           <div class="flex my-1">
-              <h3 class="text-sm font-semibold ">Hard Skills:</h3>
+            <div class="w-[18%]">
+              <li class="text-sm font-medium ">Hard Skills:</li>
+            </div>
+            <div>
               <span class="font-normal px-1"><%= skills.hard.join(", ") %></span>
+            </div>
           </div>
 
           <div class="flex my-1">
-            <h3 class="text-sm font-semibold ">Technical Skills:</h3>
+            <div class="w-[26%]">
+            <li class="text-sm font-medium ">Technical Skills:</li>
+            </div>
+            <div>
               <span class="font-normal px-1"
               ><%= skills.technology.join(", ") %></span
             >
+            </div>
+            
           </div>
         </div>
       </section>
